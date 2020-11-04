@@ -33,7 +33,8 @@ RUN curl -fSL ${MIRROR_BASE_URL}/${NIFI_TOOLKIT_BINARY_PATH} -o ${NIFI_BASE_DIR}
     && rm ${NIFI_BASE_DIR}/nifi-toolkit-${NIFI_VERSION}-bin.zip \
     && mv ${NIFI_BASE_DIR}/nifi-toolkit-${NIFI_VERSION} ${NIFI_TOOLKIT_HOME} \
     && ln -s ${NIFI_TOOLKIT_HOME} ${NIFI_BASE_DIR}/nifi-toolkit-${NIFI_VERSION} \
-    && chmod -R g+rwX ${NIFI_TOOLKIT_HOME}
+    && chgrp -R 0 \
+    && chmod -R 777 ${NIFI_TOOLKIT_HOME}
 
 
 # Download, validate, and expand Apache NiFi binary.
@@ -50,7 +51,8 @@ RUN curl -fSL ${MIRROR_BASE_URL}/${NIFI_BINARY_PATH} -o ${NIFI_BASE_DIR}/nifi-${
     && mkdir -p ${NIFI_HOME}/state \
     && mkdir -p ${NIFI_LOG_DIR} \
     && ln -s ${NIFI_HOME} ${NIFI_BASE_DIR}/nifi-${NIFI_VERSION} \
-    && chmod -R g+rwX ${NIFI_HOME}
+    && chgrp -R 0 \
+    && chmod -R 777 ${NIFI_HOME}
 
 ADD bootstrap.conf ${NIFI_HOME}/conf/bootstrap.conf
 

@@ -17,9 +17,6 @@ USER root
 
 ADD sh/ ${NIFI_BASE_DIR}/scripts/
 
-RUN chmod -R 777 ${NIFI_BASE_DIR}/scripts/ \
-    && chmod -R g+rwX ${NIFI_BASE_DIR}/scripts/
-
 # Setup NiFi user and create necessary directories
 RUN mkdir -p ${NIFI_BASE_DIR} \
     && apt-get update \
@@ -55,6 +52,10 @@ ADD bootstrap.conf ${NIFI_HOME}/conf/bootstrap.conf
 
 # Clear nifi-env.sh in favour of configuring all environment variables in the Dockerfile
 RUN echo "#!/bin/sh\n" > ${NIFI_HOME}/bin/nifi-env.sh
+
+RUN chgrp -R 0 ${NIFI_BASE_DIR} 
+    && chmod -R 777 ${NIFI_BASE_DIR} \
+    && chmod -R g+rwX ${NIFI_BASE_DIR}
 
 # Web HTTP(s) & Socket Site-to-Site Ports
 EXPOSE 8080 8443 10000

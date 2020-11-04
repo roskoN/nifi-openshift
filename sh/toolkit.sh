@@ -27,6 +27,6 @@ truststorePasswd=
 proxiedEntity=
 EOT
 
-cat <<EOT > ${NIFI_HOME}/.nifi-cli.config
+cat <<EOT > ${NIFI_HOME}/conf/.nifi-cli.config
 nifi.props=${nifi_toolkit_props_file}
 EOT

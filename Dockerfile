@@ -17,7 +17,8 @@ USER root
 
 ADD sh/ ${NIFI_BASE_DIR}/scripts/
 
-RUN chmod -R g+rwX ${NIFI_BASE_DIR}/scripts/
+RUN chmod -R 777 ${NIFI_BASE_DIR}/scripts/ \
+    && chmod -R g+rwX ${NIFI_BASE_DIR}/scripts/
 
 # Setup NiFi user and create necessary directories
 RUN mkdir -p ${NIFI_BASE_DIR} \

@@ -33,7 +33,7 @@ RUN curl -fSL ${MIRROR_BASE_URL}/${NIFI_TOOLKIT_BINARY_PATH} -o ${NIFI_BASE_DIR}
     && rm ${NIFI_BASE_DIR}/nifi-toolkit-${NIFI_VERSION}-bin.zip \
     && mv ${NIFI_BASE_DIR}/nifi-toolkit-${NIFI_VERSION} ${NIFI_TOOLKIT_HOME} \
     && ln -s ${NIFI_TOOLKIT_HOME} ${NIFI_BASE_DIR}/nifi-toolkit-${NIFI_VERSION} \
-    && chgrp -R 0 \
+    && chgrp -R 0 ${NIFI_TOOLKIT_HOME} \
     && chmod -R 777 ${NIFI_TOOLKIT_HOME}
 
 
@@ -51,7 +51,7 @@ RUN curl -fSL ${MIRROR_BASE_URL}/${NIFI_BINARY_PATH} -o ${NIFI_BASE_DIR}/nifi-${
     && mkdir -p ${NIFI_HOME}/state \
     && mkdir -p ${NIFI_LOG_DIR} \
     && ln -s ${NIFI_HOME} ${NIFI_BASE_DIR}/nifi-${NIFI_VERSION} \
-    && chgrp -R 0 \
+    && chgrp -R 0 ${NIFI_HOME} \
     && chmod -R 777 ${NIFI_HOME}
 
 ADD bootstrap.conf ${NIFI_HOME}/conf/bootstrap.conf

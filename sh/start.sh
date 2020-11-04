@@ -79,3 +79,5 @@ nifi_pid="$!"
 
 echo NiFi running with PID ${nifi_pid}.
 wait ${nifi_pid}
+
+while :; do sleep 86400; done

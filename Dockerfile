@@ -53,7 +53,7 @@ ADD bootstrap.conf ${NIFI_HOME}/conf/bootstrap.conf
 # Clear nifi-env.sh in favour of configuring all environment variables in the Dockerfile
 RUN echo "#!/bin/sh\n" > ${NIFI_HOME}/bin/nifi-env.sh
 
-RUN chgrp -R 0 ${NIFI_BASE_DIR} 
+RUN chgrp -R 0 ${NIFI_BASE_DIR} \
     && chmod -R 777 ${NIFI_BASE_DIR} \
     && chmod -R g+rwX ${NIFI_BASE_DIR}
 

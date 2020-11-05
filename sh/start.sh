@@ -72,7 +72,7 @@ esac
 
 # Continuously provide logs so that 'docker logs' can    produce them
 tail -F "${NIFI_HOME}/logs/nifi-app.log" &
-"${NIFI_HOME}/bin/nifi.sh" run 
+"${NIFI_HOME}/bin/nifi.sh" run &
 nifi_pid="$!"
 
 trap "echo Received trapped signal, beginning shutdown...;" KILL TERM HUP INT EXIT;

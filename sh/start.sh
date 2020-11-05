@@ -43,8 +43,8 @@ prop_replace 'nifi.cluster.flow.election.max.candidates'    "${NIFI_ELECTION_MAX
 prop_replace 'nifi.web.proxy.context.path'                  "${NIFI_WEB_PROXY_CONTEXT_PATH:-}"
 
 #Openshift Properties
-prop_replace 'java.arg.2' "${NIFI_JAVA_XMS}" ${nifi_bootstrap_file}
-prop_replace 'java.arg.3' "${NIFI_JAVA_XMX}" ${nifi_bootstrap_file}
+prop_replace 'java.arg.2' "${NIFI_JAVA_XMS}" ${nifi_bootstrap_file:--Xms512m}
+prop_replace 'java.arg.3' "${NIFI_JAVA_XMX}" ${nifi_bootstrap_file:--Xmx512m}
 prop_replace 'java.arg.8' "${NIFI_TIMEZONE}" ${nifi_bootstrap_file}
 
 . "${scripts_dir}/update_cluster_state_management.sh"
